@@ -3,8 +3,15 @@ const connectDB = require('./config/db');
 
 const app = express();
 
+const routes = require('./routes');
+
 //Connect database
 connectDB();
+
+// Initialize middleware
+app.use(express.json({ extended: false }));
+
+app.use(routes);
 
 app.get('/', (req, res) => res.send('API Started'));
 
