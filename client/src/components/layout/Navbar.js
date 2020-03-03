@@ -2,14 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import {
-  AppBar,
-  Toolbar,
-  Link,
-  Typography,
-  Button,
-  IconButton
-} from '@material-ui/core';
+import { AppBar, Toolbar, Link, Typography, Button } from '@material-ui/core';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
