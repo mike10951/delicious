@@ -1,58 +1,63 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import {
+  AppBar,
+  Toolbar,
+  Link,
+  Typography,
+  Button,
+  IconButton
+} from '@material-ui/core';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCode,
-  faSignOutAlt,
-  faUser
-} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import style from './style';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const classes = style();
+
   const authLinks = (
-    <ul>
-      <li>
-        <Link to='/dashboard'>
-          <FontAwesomeIcon icon={faUser} />
-          <span className='hide-sm'>Dashboard</span>
-        </Link>
-      </li>
-      <li>
-        <a onClick={logout} href='#!'>
-          <FontAwesomeIcon icon={faSignOutAlt} />
-          <span className='hide-sm'>Logout</span>
-        </a>
-      </li>
-    </ul>
+    <Fragment>
+      <Button href='/dashboard' color='inherit'>
+        {' '}
+        <FontAwesomeIcon icon={faUser} />
+        <span className='hide-sm'>Dashboard</span>
+      </Button>
+      <Button onClick={logout} color='inherit'>
+        {' '}
+        <FontAwesomeIcon icon={faSignOutAlt} />
+        <span className='hide-sm'>Logout</span>
+      </Button>
+    </Fragment>
   );
 
   const guestLinks = (
-    <ul>
-      <li>
-        <a href='#!'>Developers</a>
-      </li>
-      <li>
-        <Link to='/register'>Register</Link>
-      </li>
-      <li>
-        <Link to='/login'>Login</Link>
-      </li>
-    </ul>
+    <Fragment>
+      <Button href='/register' color='inherit'>
+        Register
+      </Button>
+      <Button href='/login' color='inherit'>
+        Login
+      </Button>
+    </Fragment>
   );
   return (
-    <nav className='navbar bg-dark'>
-      <h1>
-        <Link to='/'>
-          <FontAwesomeIcon icon={faCode} /> DevConnector
-        </Link>
-      </h1>
-      {!loading && (
-        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-      )}
-    </nav>
+    <div className={classes.root}>
+      <AppBar position='static' className={classes.toolbar}>
+        <Toolbar>
+          <Typography variant='h5' edge='start' className={classes.title}>
+            <Link href='/' color='inherit'>
+              Delicious
+            </Link>
+          </Typography>
+          {!loading && (
+            <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+          )}
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 
