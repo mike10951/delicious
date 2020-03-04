@@ -13,6 +13,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const authLinks = (
     <Fragment>
+      <Button href='https://delicious-dash.herokuapp.com/' color='inherit'>
+        Recipes
+      </Button>
       <Button href='/dashboard' color='inherit'>
         {' '}
         <FontAwesomeIcon icon={faUser} />
